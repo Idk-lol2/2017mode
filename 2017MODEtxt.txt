@@ -1,0 +1,34 @@
+local Lighting = game:GetService("Lighting")
+
+
+Lighting.Ambient = Color3.fromRGB(128, 128, 128)
+Lighting.Brightness = 2
+Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+Lighting.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+Lighting.ShadowSoftness = 0.2
+
+Lighting.Technology = Enum.Technology.Compatibility
+
+
+Lighting.GlobalShadows = true
+Lighting.EnvironmentDiffuseScale = 0
+Lighting.EnvironmentSpecularScale = 0
+
+Lighting.FogColor = Color3.fromRGB(192, 192, 192)
+Lighting.FogEnd = 1000
+Lighting.FogStart = 200
+
+Lighting.ExposureCompensation = 0
+Lighting.GeographicLatitude = 41.733
+
+for _, effect in ipairs(Lighting:GetChildren()) do
+    if effect:IsA("BloomEffect") or effect:IsA("ColorCorrectionEffect") or effect:IsA("SunRaysEffect") then
+		effect.Enabled = false
+		
+		local userSettings = UserSettings()
+		local gameSettings = userSettings.GameSettings
+		gameSettings.GraphicsMode = Enum.GraphicsMode.ShadowMap
+
+    end
+end
